@@ -7,5 +7,6 @@ app.use(express.json()); // it handles the json data coming from the client
 
 app.use("/api/students", studentRoutes);
 //app.use("/auth", LoginRoutes)
+//app.use("/auth", LoginRoutes)///
 
 app.listen(PORT, () => console.log("Server is running on port, 3000"));
