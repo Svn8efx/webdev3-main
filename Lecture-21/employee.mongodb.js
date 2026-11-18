@@ -7,7 +7,7 @@ use("GoogleDB")
 //         salary: 65000,
 //         department: "Finance",
 //         contact: 6877557864,
-//         age: 25
+//         age: 26
 //     }
 // )
 
@@ -18,7 +18,7 @@ use("GoogleDB")
 //         salary: 65000,
 //         department: "Finance",
 //         contact: 6877557864,
-//         age: 28
+//         age: 29
 
 //     }
 // )
@@ -31,7 +31,7 @@ use("GoogleDB")
 //             salary: 65000,
 //             department: "Finance",
 //             contact: 6877557164,
-//             age: 25
+//             age: 27
 //         },
 //         {
 //             empID: 105,
@@ -39,7 +39,7 @@ use("GoogleDB")
 //         salary: 65000,
 //         department: "Finance",
 //         contact: 687757864,
-//         age: 25
+//         age: 22
 //         }
 
 //     ]
