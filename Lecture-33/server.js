@@ -8,7 +8,10 @@ const excryptpassPassword=async(password)=>{
     console.log("salt:",salt);
     const hashedpassword=await bcrypt.hash(password,salt);
     console.log("hashed password:",hashedpassword);
+
+    const isMatch=await bcrypt.compare("jack@1234",hashedpassword)
+    console.log("password Match:",isMatch);
 }
 
 excryptpassPassword(password);
-excryptpassPassword(copypassword);
+//excryptpassPassword(copypassword);
