@@ -17,8 +17,9 @@ const io = new WebSocket.Server(server, {
 io.on("connection",(Socket)=>{
     console.log("socket Connected:",Socket.id)
 
-    Socket.on("message",(msg)=>{
-        Socket.exit(msg)
+    socket.on("message",(msg)=>{
+        console.log(msg)
+        io.emit("message",msg)
     })
 
     Socket.on("disconnect",()=>{
