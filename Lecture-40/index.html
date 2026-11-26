@@ -1,20 +1,19 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Socket.IO Chat</title>
+    <title>Lecture 40</title>
 </head>
+
 <body>
-
     <input type="text" id="message" placeholder="Enter your message">
-    <input type="button" id="btn" value="Send" onclick="sendMessage()">
-
+    <input type="button" id="btn" value="send" onclick="sendMessage()">
     <ul id="chatContainer"></ul>
 
-    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
-
+    <!-- Socket.IO Client Library -->
+    <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
     <script>
         const msg = document.getElementById("message");
         const btn = document.getElementById("btn");
@@ -22,25 +21,29 @@
 
         const socket = io("http://localhost:3000");
 
-        // Receive messages
-        socket.on("message", (message) => {
-            console.log("Message:", message);
+        socket.on("connect", () => {
+            console.log("socket connected");
+        });
 
+        socket.on("message", (msg) => {
+            console.log("message:", msg);
             const li = document.createElement("li");
-            li.innerText = message;
-
+            li.innerText = msg;
             chatbox.appendChild(li);
         });
 
-        // Send messages
         const sendMessage = () => {
-            if (msg.value.trim() === "") return;
-
+            console.log(msg.value);
             socket.emit("message", msg.value);
-
             msg.value = "";
         };
-    </script>
 
+        msg.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+                sendMessage();
+            }
+        });
+    </script>
 </body>
+
 </html>
