@@ -18,8 +18,9 @@ io.on("connection",(Socket)=>{
     console.log("socket Connected:",Socket.id)
 
     socket.on("message",(msg)=>{
-        console.log(msg)
-        io.emit("message",msg)
+        //console.log(msg)
+        //io.emit("message",msg)
+        socket.broadcast.emit("message",msg)
     })
 
     Socket.on("disconnect",()=>{
