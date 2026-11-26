@@ -1,34 +1,35 @@
-const express = require("express")
-const WebSocket = require("socket.io")
-const http = require("http")
-const { Socket } = require("net")
-const app = express()
-const port = 3000
 
-const server = http.createServer(app)
+const express = require("express");
+const WebSocket = require("socket.io");
+const http = require("http");
+
+const app = express();
+const port = 3000;
+
+const server = http.createServer(app);
 
 const io = new WebSocket.Server(server, {
     cors: {
         origin: "*",
         methods: ["GET", "POST"]
     }
-})
+});
 
-io.on("connection",(Socket)=>{
-    console.log("socket Connected:",Socket.id)
+io.on("connection", (socket) => {
+    console.log("Socket connected:", socket.id);
 
-    socket.on("message",(msg)=>{
-        //console.log(msg)
-        //io.emit("message",msg)
-        socket.broadcast.emit("message",msg)
-    })
+    socket.on("message", (msg) => {
+        console.log("Message received:", msg);
 
-    Socket.on("disconnect",()=>{
-        console.log("socket disconnected",Socket.id)
-    })
+        // Send message to all other connected clients
+        socket.broadcast.emit("message", msg);
+    });
 
-})
+    socket.on("disconnect", () => {
+        console.log("Socket disconnected:", socket.id);
+    });
+});
 
 server.listen(port, () => {
-    console.log("connected to server")
-})
+    console.log(`Server running on http://localhost:${port}`);
+});
