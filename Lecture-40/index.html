@@ -18,6 +18,7 @@
         const socket=io("ws://localhost:3000")
 
         socket.on("message",(msg)=>{
+            console.log("message",msg)
             const li=document.createElement("li")
             li.innerText=msg
             chatbox.appendChild(li)
